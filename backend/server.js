@@ -11,7 +11,10 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: [
+    "http://localhost:5173",
+    "https://finedge.onrender.com"
+  ],
   credentials: true
 }));
 app.use(express.json());
@@ -32,12 +35,12 @@ const MONGO_URI = process.env.MONGO_URI;
 // Connect DB
 mongoose.connect(MONGO_URI)
   .then(() => {
-    console.log('MongoDB Connected ✅ - server.js:35');
+    console.log('MongoDB Connected ✅ - server.js:38');
 
     app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT} 🚀 - server.js:38`);
+      console.log(`Server running on port ${PORT} 🚀 - server.js:41`);
     });
   })
   .catch((err) => {
-    console.error('MongoDB connection error ❌ - server.js:42', err);
+    console.error('MongoDB connection error ❌ - server.js:45', err);
   });
